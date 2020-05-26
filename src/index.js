@@ -1,11 +1,12 @@
 import app from './app';
+import config from './config';
+import logger from './utils/logger';
+import loaders from './loaders/mongoose';
 
-const startApp = async () => {
-  const header = document.querySelector('[data-app-name]');
-  if (!header) return;
+loaders.initializeDb();
+const port = process.env.PORT || config.port;
+if (config.NODE_ENV !== 'test') {
+  app.listen(config.port, logger(`app running on port ${port}`));
+}
 
-  const programName = await app();
-  header.textContent = programName;
-};
-
-document.addEventListener('DOMContentLoaded', startApp);
+export default app;

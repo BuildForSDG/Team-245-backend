@@ -19,7 +19,8 @@ const userSchema = Schema(
   { timestamps: true }
 );
 
-userSchema.methods.generateAuthToken = () => {
+// eslint-disable-next-line func-names
+userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
     {
       // eslint-disable-next-line no-underscore-dangle

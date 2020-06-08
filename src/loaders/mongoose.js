@@ -7,7 +7,9 @@ export default {
     try {
       await mongoose.connect(config.DB_URL, {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useCreateIndex: true
       });
       logger('Connected to db');
     } catch (error) {
